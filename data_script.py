@@ -1,7 +1,7 @@
 # download "lpd-cleansed" from https://salu133445.github.io/lakh-pianoroll-dataset/dataset
-# unzip the .tar file and load the lpd folder into your workspace
+# unzip the .tar file and load the lpd folder into 2021-Music-Generation folder
 
-# install  Pypianoroll by using "pip install pypianoroll" -> mac/linux only (maybe windows idk)
+# install Pypianoroll by using "pip install pypianoroll" -> mac/linux only (maybe windows idk)
 
 # example of use
 
