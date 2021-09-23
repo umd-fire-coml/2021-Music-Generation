@@ -23,3 +23,5 @@ print("Done!")
 
 # delete the .tar file from the system
 os.system('rm lpd_cleansed.tar')
+
+print("Data is in lpd/lpd_cleansed")
