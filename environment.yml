@@ -9,4 +9,4 @@ dependencies:
   - dlib
   - numpy
   - scikit-learn
-  - musci21
+  - music21
