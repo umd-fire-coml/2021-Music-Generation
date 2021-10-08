@@ -1,7 +1,6 @@
-tensorflow
-protobuf
-opencv
-dlib
-numpy
-scikit-learn
+tensorflow==2.6.0
+protobuf==3.18.0
+opencv-python==4.5.3.56
+numpy==1.19.5
+scikit-learn==1.0
 pypianoroll
