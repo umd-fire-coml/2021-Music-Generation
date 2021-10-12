@@ -4,12 +4,18 @@
 #
 # Do you need to add another package? This just checks the environment.yml
 # for valid packages, so this checker won't break.
+#
+# LOGIC: Iterate through 'pip list'
+# if requirements.txt is contained in pip list, then we good
+#
+#
+#
 
 import os
 
 def check_env():
 
-    ccfile = open("environment.yml", "r")
+    ccfile = open("requirements.txt", "r")
     atPackages = False
     isHere = False
     isInstalled = True
@@ -25,7 +31,7 @@ def check_env():
     ccfile.close()
 
     out = []
-    out = os.popen('conda env export').read().split()
+    out = os.popen('pip3 lists').read().split()
 
     for name in env_packages:
         if "=" in name:
