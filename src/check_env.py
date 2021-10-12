@@ -24,14 +24,11 @@ def check_env():
 
     for aline in ccfile:
         values = aline.split()
-        if(atPackages == True):
-            env_packages.append(values[1])
-        if(values[0] == "dependencies:"):
-            atPackages = True
+        env_packages.append(values[0])
     ccfile.close()
 
     out = []
-    out = os.popen('pip3 lists').read().split()
+    out = os.popen('pip3 list').read().split()
 
     for name in env_packages:
         if "=" in name:
