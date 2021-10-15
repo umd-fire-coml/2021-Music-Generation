@@ -1,0 +1,7 @@
+tensorflow
+protobuf
+opencv
+dlib
+numpy
+scikit-learn
+pypianoroll
