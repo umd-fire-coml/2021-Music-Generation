@@ -4,8 +4,8 @@ from tensorflow import keras
 from tensorflow.keras.callbacks import ModelCheckpoint
 from os.path import exists
 
-from dummy_dataset import MyDataset
-from dummy_model import my_model
+from src.dummy_dataset import MyDataset
+from src.dummy_model import my_model
 
 dataset = MyDataset()
 
@@ -37,3 +37,6 @@ history = model.fit(
     validation_data=(dataset.x_val, dataset.y_val),
     callbacks=[mc]
 )
+
+def get_history():
+    return history
