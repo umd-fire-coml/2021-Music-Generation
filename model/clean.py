@@ -4,7 +4,7 @@ import glob
 def cleanup():
 
     # assign directory
-    directory = 'weights'
+    directory = 'model/weights'
     files = []
     max = 0
     string = "null"
@@ -28,7 +28,7 @@ def cleanup():
             weight += word+"-"
         weight = weight[:-1]
 
-        os.replace(weight, "weights.hdf5")
+        os.replace(weight, "model/weights.hdf5")
 
         for file in os.listdir(directory):
-            os.remove("weights/"+file)
+            os.remove("model/weights/"+file)

@@ -8,7 +8,7 @@ def prepare():
     notes = []
     sequence_length = 100
 
-    for file in glob.glob("midi_songs/*.mid"):
+    for file in glob.glob("model/midi_songs/*.mid"):
         print(file)
         try:
             midi = converter.parse(file)

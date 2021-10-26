@@ -12,15 +12,15 @@ network_input, network_output, n_vocab, predictnames, sequence_length = prepare(
 
 model = createModel(network_input, n_vocab)
 
-file_exists = exists("weights.hdf5")
+file_exists = exists("model/weights.hdf5")
 
 cleanup()
 
 if file_exists is True:
     print("LOADING WEIGHTS")
-    model.load_weights("weights.hdf5")
+    model.load_weights("model/weights.hdf5")
 
-filepath = "weights/weights-improvement-{epoch:02d}-{loss:.4f}-bigger.hdf5"
+filepath = "model/weights/weights-improvement-{epoch:02d}-{loss:.4f}-bigger.hdf5"
 
 checkpoint = ModelCheckpoint(
     filepath, monitor='loss', 
@@ -29,7 +29,7 @@ checkpoint = ModelCheckpoint(
     mode='min'
 )
 
-log_dir = "logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
+log_dir = "model/logs/fit/" + datetime.datetime.now().strftime("%Y%m%d-%H%M%S")
 tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 
 callbacks_list = [checkpoint, tensorboard_callback]     

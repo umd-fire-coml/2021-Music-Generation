@@ -12,7 +12,7 @@ cleanup()
 network_input, network_output, n_vocab, pitchnames, sequence_length = prepare()
 model = createModel(network_input, n_vocab)
 # Load the weights to each node
-model.load_weights('weights.hdf5')
+model.load_weights('model/weights.hdf5')
 
 start = numpy.random.randint(0, len(network_input)-1)
 int_to_note = dict((number, note) for number, note in enumerate(pitchnames))
@@ -55,4 +55,4 @@ for pattern in prediction_output:
     offset += 0.5
 
 midi_stream = Stream(output_notes)
-midi_stream.write('midi', fp='test_output.mid')
+midi_stream.write('midi', fp='model/test_output.mid')
