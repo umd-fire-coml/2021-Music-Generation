@@ -1,5 +1,4 @@
-import check_env
+from src.check_env import check_env
 
-check_env()
-#def test_check_env():
-#     assert(check_env() == False)
+def test_check_env():
+     assert(check_env() == True)
