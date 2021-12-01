@@ -1,7 +1,7 @@
 from keras.engine.sequential import Sequential
 from keras.layers import LSTM, Dropout, Dense, Activation
 
-def createModel():
+def createModel(n_vocab):
 
     model = Sequential()
     model.add(LSTM(
@@ -15,8 +15,7 @@ def createModel():
     model.add(LSTM(256))
     model.add(Dense(256))
     model.add(Dropout(0.3))
-    # 303 -> n_vocab
-    model.add(Dense(303))
+    model.add(Dense(n_vocab)) # 303
     model.add(Activation('softmax'))
     model.compile(loss='categorical_crossentropy', optimizer='rmsprop')
 

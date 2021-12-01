@@ -10,14 +10,15 @@ import glob, numpy
 class DataGenerator(Sequence):
     '''this is a random data generator, edit this data generator to read data from dataset folder and return a batch with __getitem__'''
 
-    def __init__(self, batch_size=100, x_shape=(360, 480, 3), y_shape=(100, 1), n_dataset_items=80):
+    def __init__(self, pitchnames, id_list, batch_size=100):
         self.batch_size = batch_size
-        self.x_shape = x_shape
-        self.y_shape = y_shape
-        self.n_dataset_items = n_dataset_items
-        self.indexes = np.arange(self.n_dataset_items)
+        self.n_dataset_items = len(id_list)
+        #self.indexes = np.arange(self.n_dataset_items)
         self.filepaths = os.listdir("model/midi_songs/")
-
+        self.pitchnames = pitchnames
+        self.id_list = id_list
+        self.access_time = 0
+        self.sequence_length = 100
         self.on_epoch_end()
 
     def __len__(self):
@@ -32,9 +33,10 @@ class DataGenerator(Sequence):
         :return: x_batch and y_batch
         """
 
+        """
         items = []
         notes = []
-        sequence_length = 100
+        sequence_length = self.sequence_length
 
         indexes = self.indexes[index * self.batch_size : (index+1) * self.batch_size]
 
@@ -52,7 +54,7 @@ class DataGenerator(Sequence):
             notes_to_parse = None
 
             parts = instrument.partitionByInstrument(midi)
-
+            
             if parts:  # file has instrument parts
                 notes_to_parse = parts.parts[0].recurse()
             else:  # file has notes in a flat structure
@@ -63,7 +65,23 @@ class DataGenerator(Sequence):
                     notes.append(str(element.pitch))
                 elif isinstance(element, chord.Chord):
                     notes.append('.'.join(str(n) for n in element.normalOrder))
+        """
+        notes = []
+        midi = converter.parse("model/midi_songs/"+self.curr_file+".mid")
+        notes_to_parse = None
+
+        parts = instrument.partitionByInstrument(midi)
         
+        if parts:  # file has instrument parts
+            notes_to_parse = parts.parts[0].recurse()
+        else:  # file has notes in a flat structure
+            notes_to_parse = midi.flat.notes
+
+        for element in notes_to_parse:
+            if isinstance(element, note.Note):
+                notes.append(str(element.pitch))
+            elif isinstance(element, chord.Chord):
+                notes.append('.'.join(str(n) for n in element.normalOrder))
         # get all pitch names
         pitchnames = sorted(set(item for item in notes))
 
@@ -76,21 +94,21 @@ class DataGenerator(Sequence):
 
 
         # create input sequences and the corresponding outputs
-        for i in range(0, len(notes) - sequence_length, 1):
-            sequence_in = notes[i:i + sequence_length]
-            sequence_out = notes[i + sequence_length]
+        for i in range(0, len(notes) - self.sequence_length, 1):
+            sequence_in = notes[i:i + self.sequence_length]
+            sequence_out = notes[i + self.sequence_length]
             network_input.append([note_to_int[char] for char in sequence_in])
             network_output.append(note_to_int[sequence_out])
         
         n_patterns = len(network_input)
 
         # reshape the input into a format compatible with LSTM layers
-        network_input = numpy.reshape(network_input, (n_patterns, sequence_length, 1))
+        network_input = numpy.reshape(network_input, (n_patterns, self.sequence_length, 1))
 
         # normalize input
         network_input = network_input / float(n_vocab)
         network_output = to_categorical(network_output)
-
+        
         """
         start = random.randint(0, self.n_dataset_items - self.batch_size)
 
@@ -102,7 +120,19 @@ class DataGenerator(Sequence):
     def on_epoch_end(self):
         """Shuffle indexes after each epoch
         """
-        np.random.shuffle(self.indexes)
+        if self.access_time <= 0:
+            self.curr_file = self.id_list[np.random.randint(0, len(self.id_list))]
+            midi = converter.parse("model/midi_songs/"+self.curr_file+".mid")
+            notes_to_parse = None
+            parts = instrument.partitionByInstrument(midi)
+            if parts:  # file has instrument parts
+                notes_to_parse = parts.parts[0].recurse()
+            else:  # file has notes in a flat structure
+                notes_to_parse = midi.flat.notes
+            self.song_len = len(notes_to_parse)
+            self.access_time = int(self.song_len / (self.sequence_length * self.batch_size))
+
+        #np.random.shuffle(self.indexes)
 
     def prepare(self, index, batch_size):
         notes = []
