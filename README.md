@@ -15,7 +15,8 @@
 </p>
 
 <h3> Using the Model </h3>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/m5mM3cCsIO0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+[![IMAGE ALT TEXT](http://img.youtube.com/vi/m5mM3cCsIO0/0.jpg)](http://www.youtube.com/watch?v=m5mM3cCsIO0 "Demonstration")
 <p>Try it out for yourself on <a href="https://drive.google.com/file/d/1rOWSiBm9kovAXVz6Hgv3fTxvnqr1a4D1/view?usp=sharing">Google Collab</a>!</p>
 
 <h3> Directory Guide </h3>
