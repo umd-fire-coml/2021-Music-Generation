@@ -4,7 +4,7 @@ import glob
 def cleanup():
 
     # assign directory
-    directory = 'weights'
+    directory = 'model/weights'
     files = []
     max = 0
     string = "null"
