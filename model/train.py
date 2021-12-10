@@ -21,5 +21,5 @@ def train_model(network_input, network_output, model, filepath):
     tensorboard_callback = tf.keras.callbacks.TensorBoard(log_dir=log_dir, histogram_freq=1)
 
     callbacks_list = [checkpoint, tensorboard_callback]     
-    model.fit(network_input, network_output, epochs=100, batch_size=25, callbacks=callbacks_list)
+    model.fit(network_input, network_output, epochs=2, batch_size=25, callbacks=callbacks_list)
     cleanup()
