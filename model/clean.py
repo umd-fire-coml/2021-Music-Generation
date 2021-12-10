@@ -9,7 +9,7 @@ def cleanup():
     max = 0
     string = "null"
     counter = 0
-    weight = "weights/"
+    weight = "model/weights/"
     
 
     if len(os.listdir(directory)) != 0:
