@@ -72,4 +72,7 @@ To test, use <a href="https://drive.google.com/file/d/1rOWSiBm9kovAXVz6Hgv3fTxvn
   <li>
     Skúli, S., 2021. How to Generate Music using a LSTM Neural Network in Keras. [online] Medium. Available at: <https://towardsdatascience.com/how-to-generate-music-using-a-lstm-neural-network-in-keras-68786834d4c5> [Accessed 10 December 2021].
   </li>
+  <li>
+    Xu, X.: LSTM networks for music generation. arXiv preprint arXiv:2006.09838 (2020)
+  </li>
 </ol>
