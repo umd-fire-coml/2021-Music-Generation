@@ -23,7 +23,7 @@
   <li>data</li>
   <ol>
    <li>data_download_script.py - Dataset Download Script for the LAKH-Cleansed Dataset</li>
-   <li>dat_download_small.py - Dataset Download Script for our own custom Dataset (use this!)</li>
+   <li>data_download_small.py - Dataset Download Script for our own custom Dataset (use this!)</li>
   </ol>
   <li>model</li>
   <ol>
@@ -42,3 +42,23 @@
 <li>.gitignore - Ignored files</li>
 <li>requirements.txt - Required libraries!</li>
 </ol>
+
+<h3> Setting up the environment </h3>
+<p> Just install whatever is in the requirements.txt using pip. Make sure you are using Python 3.9.6! </p>
+<code> pip install -r requirements.txt </code>
+
+<h3> Setting up the data </h3>
+<p> At the moment, this model only works with our curated dataset as it directly loads everything into memory rather than using a data generator. Due to this, you must use the
+  data_download_small.py script found in the data folder. Just import it and call the function small() and it will download and unzip. </p>
+
+```
+from data_download_small.py import small
+small()
+```
+<h3> Training </h3>
+<p> 
+Training can be done using the provided jupyter notebook. Everything that is required should be found in the inner model folder that is inside the outter model folder. When you clone this repository, just run the jupyter notebook and you should be training. You will have the option to change batch size and epochs within it. The jupyter notebook should also load the weights.hdf5 file, which is our most recently trained weights.
+  
+<h3> Testing </h3>
+To test, use <a href="https://drive.google.com/file/d/1rOWSiBm9kovAXVz6Hgv3fTxvnqr1a4D1/view?usp=sharing">Google Collab</a>. Use this collab, and run the first cell. Then, overwrite the weights.hdf5 file that it clones with your own if you have it. Then, run the rest of the cells. It will spit out an output file and visualize it.
+</p>
