@@ -6,7 +6,7 @@ def createModel(network_input, n_vocab):
     model = Sequential()
     model.add(LSTM(
         256,
-        input_shape=(99,1),
+        input_shape=(100,1),
         return_sequences=True
     ))
     model.add(Dropout(0.3))
