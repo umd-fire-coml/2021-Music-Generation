@@ -63,3 +63,13 @@ Training can be done using the provided jupyter notebook. Everything that is req
 <h3> Testing </h3>
 To test, use <a href="https://drive.google.com/file/d/1rOWSiBm9kovAXVz6Hgv3fTxvnqr1a4D1/view?usp=sharing">Google Collab</a>. Use this collab, and run the first cell. Then, overwrite the weights.hdf5 file that it clones with your own if you have it. Then, run the rest of the cells. It will spit out an output file and visualize it.
 </p>
+
+<h3> Citations </h3>
+<ol>
+  <li>
+    Pai, A., 2021. Automatic Music Generation | Music Generation Deep Learning. [online] Analytics Vidhya. Available at: <https://www.analyticsvidhya.com/blog/2020/01/how-to-perform-automatic-music-generation/> [Accessed 10 December 2021].
+  </li>
+  <li>
+    Skúli, S., 2021. How to Generate Music using a LSTM Neural Network in Keras. [online] Medium. Available at: <https://towardsdatascience.com/how-to-generate-music-using-a-lstm-neural-network-in-keras-68786834d4c5> [Accessed 10 December 2021].
+  </li>
+</ol>
